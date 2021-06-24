@@ -7,10 +7,96 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <style>
+      .demo-long {
+        margin-top: 100px;
+        margin-bottom: 200px;
+      }
+    </style>
   </head>
 
   <body>
+    <!-- Navbar  -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark p-md-3">
+      <div class="container">
+        <a class="navbar-brand" href="#">Alpha Photography Blog</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <div class="mx-auto"></div>
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link text-white" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="#">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="#">Pricing</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="#">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Slider  -->
+   <section class="home">
+    <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel">
+    <div class="carousel-controls">
+      <ol class="carousel-indicators">
+        <li data-target="#carousel" data-slide-to="0" class="active" style="background-image:url('<%= asset_path('white_sands.jpg') %>')"></li>
+        <li data-target="#carousel" data-slide-to="1" style="background-image:url('<%= asset_path('dragonfly_far.jpg') %>')"></li>
+        <li data-target="#carousel" data-slide-to="2" style="background-image:url('<%= asset_path('oporto.jpg') %>')"></li>
+
+      </ol>
+      <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+       <img src="<%= asset_path('left-arrow.svg') %>" alt="Prev">
+    </a>
+    <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+      <img src="<%= asset_path('right-arrow.svg') %>" alt="Next">
+    </a>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active" style="background-image:url('<%= asset_path('white_sands.jpg') %>')">
+        <div class="container">
+           <h2>White Sands</h2>
+           <p>Expansive Views</p>
+        </div>
+      </div>
+      <div class="carousel-item" style="background-image:url('<%= asset_path('dragonfly_close.jpg') %>')">
+        <div class="container">
+           <h2>Dragonfly</h2>
+           <p>Macro</p>
+        </div>
+      </div>
+      <div class="carousel-item" style="background-image:url('<%= asset_path('oporto.jpg') %>')">
+        <div class="container">
+           <h2>Oporto</h2>
+           <p>Ancient Urban</p>
+        </div>
+      </div>
+    </div>
+  </div>
+   </section>
+
     <%= render 'layouts/messages' %>
     <%= yield %>
   </body>
