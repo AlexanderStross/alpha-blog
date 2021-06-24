@@ -12,5 +12,9 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-import "bootstrap"
-import "../stylesheets/application"
+// import the bootsrap library.
+import 'bootstrap'
+
+// import the app/assets/stylesheets/application.css
+// file from the previous step.
+import "../../assets/stylesheets/application"

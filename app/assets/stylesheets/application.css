@@ -13,5 +13,5 @@
  *= require_tree .
  *= require_self
  */
-@import "bootstrap";
-@import "./style.css"
+ /* import the bootstrap library */
+ @import "bootstrap"
