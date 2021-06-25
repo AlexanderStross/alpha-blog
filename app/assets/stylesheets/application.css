@@ -14,6 +14,5 @@
  *= require_self
  */
  /* import the bootstrap library */
- /*@import "bootstrap"; */
- @import "../../node_modules/bootstrap/scss/bootstrap";
+ @import "bootstrap";
  @import "./style.css";
