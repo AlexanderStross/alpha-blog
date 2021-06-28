@@ -150,7 +150,7 @@ body {
 }
 
 /*responsive*/
-@media(max-width: 767px){
+@media(max-width: 768px){
   .home .carousel-control-next,
   .home .carousel-control-prev{
   	display: none;

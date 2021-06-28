@@ -9,12 +9,7 @@
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <style>
-      .demo-long {
-        margin-top: 100px;
-        margin-bottom: 200px;
-      }
-    </style>
+
   </head>
 
   <body class="d-flex flex-column">
@@ -22,5 +17,16 @@
     <%= render 'layouts/messages' %>
     <%= yield %>
     <%= render 'layouts/footer' %>
+    <script type="text/javascript">
+  var nav = document.querySelector('nav');
+
+  window.addEventListener('scroll', function () {
+    if (window.pageYOffset > 50) {
+      nav.classList.add('bg-dark', 'shadow', 'wow', 'fadeIn');
+    } else {
+      nav.classList.remove('bg-dark', 'shadow', 'wow', 'fadeIn');
+    }
+  });
+</script>
   </body>
 </html>

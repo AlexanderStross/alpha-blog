@@ -1,5 +1,5 @@
 <!-- Content -->
-  <div id="page-content" class="mt-5 wow fadeIn">
+  <div id="page-content" class="wow fadeIn">
     <h1 class="text-center">Blog Index</h1>
     <div class="container">
         <% @articles.each do |article| %>
@@ -13,8 +13,8 @@
                 <h5 class="card-title"><%= link_to article.title, article_path(article), class: "text-success" %></h5>
                 <p class="card-text"><%= truncate(article.description, length: 100) %></p>
                 <%= link_to 'Show', article_path(article), class: "btn btn-outline-success" %>
-                <%= link_to 'Edit', edit_article_path(article), class: "btn btn-outline-success" %>
-                <%= link_to 'Delete', article_path(article), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-outline-success" %>
+                <%= link_to 'Edit', edit_article_path(article), class: "btn btn-outline-primary" %>
+                <%= link_to 'Delete', article_path(article), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-outline-danger" %>
               </div>
               <div class="card-footer text-muted">
                 <Small>Created <%= time_ago_in_words(article.created_at) %> ago,
