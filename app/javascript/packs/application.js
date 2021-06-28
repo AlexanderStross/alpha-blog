@@ -16,7 +16,7 @@ ActiveStorage.start()
 import "bootstrap"
 
 // Import WOW
-//import "wow"
+window.WOW = require('wowjs').WOW;
 
 // import the app/assets/stylesheets/application.css
 // file from the previous step.
