@@ -14,19 +14,23 @@
 
   <body class="d-flex flex-column">
     <%= render 'layouts/tnav' %>
+    <% unless current_page?(root_path) %>
+    <div id="page-content" class="wow fadeIn">
+     <br/><br/><br/>
+     </div>
+     <% end %>
     <%= render 'layouts/messages' %>
     <%= yield %>
     <%= render 'layouts/footer' %>
     <script type="text/javascript">
-  var nav = document.querySelector('nav');
-
-  window.addEventListener('scroll', function () {
-    if (window.pageYOffset > 50) {
-      nav.classList.add('bg-dark', 'shadow', 'wow', 'fadeIn');
-    } else {
-      nav.classList.remove('bg-dark', 'shadow', 'wow', 'fadeIn');
-    }
-  });
+      var nav = document.querySelector('nav');
+      window.addEventListener('scroll', function () {
+        if (window.pageYOffset > 50) {
+          nav.classList.add('bg-dark', 'shadow', 'wow', 'fadeIn');
+        } else {
+          nav.classList.remove('bg-dark', 'shadow', 'wow', 'fadeIn');
+        }
+    });
 </script>
   </body>
 </html>
