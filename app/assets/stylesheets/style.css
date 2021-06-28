@@ -7,6 +7,7 @@ body {
 
 #page-content {
   flex: 1 0 auto;
+	background-color: lightgrey;
 }
 
 #sticky-footer {
@@ -21,6 +22,7 @@ body {
 	margin: 0 0 0 0 !important;
 }
 
+/* Carousel Classes */
 .home .carousel-item{
 	min-height: 100vh;
 	background-position: center;
