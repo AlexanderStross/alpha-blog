@@ -13,22 +13,24 @@
   </head>
 
   <body class="d-flex flex-column">
-    <%= render 'layouts/tnav' %>
-    <% unless current_page?(root_path) %>
-    <div id="page-content" class="wow fadeIn">
-     <br/><br/><br/>
-     </div>
-     <% end %>
-    <%= render 'layouts/messages' %>
-    <%= yield %>
+    <div id="page-content">
+      <%= render 'layouts/tnav' %>
+      <!-- Correcting for Transparent Navbar -->
+      <% unless current_page?(root_path) %>
+         <br/><br/><br/>
+      <% end %>
+      <!-- End Correcting for Transparent Navbar -->
+      <%= render 'layouts/messages' %>
+      <%= yield %>
+    </div>
     <%= render 'layouts/footer' %>
     <script type="text/javascript">
       var nav = document.querySelector('nav');
       window.addEventListener('scroll', function () {
         if (window.pageYOffset > 50) {
-          nav.classList.add('bg-dark', 'shadow', 'wow', 'fadeIn');
+          nav.classList.add('bg-dark', 'shadow', 'animated', 'fadein');
         } else {
-          nav.classList.remove('bg-dark', 'shadow', 'wow', 'fadeIn');
+          nav.classList.remove('bg-dark', 'shadow', 'animated', 'fadein');
         }
     });
 </script>
