@@ -7,7 +7,7 @@
           <div class="col-10 mt-3">
             <div class="card text-center shadow mb-3 bg-white rounded">
               <div class="card-header fst-italic">
-                by Alexander Stross
+                by <%= @article.user.username if @article.user %>
               </div>
               <div class="card-body">
                 <div class="card-text text-left"><%= simple_format(@article.description) %></div>
