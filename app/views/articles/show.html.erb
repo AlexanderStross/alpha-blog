@@ -8,9 +8,10 @@
             <div class="card text-center shadow mb-3 bg-white rounded">
               <div class="card-header fst-italic">
                 by <%= @article.user.username if @article.user %>
+                <%= link_to gravatar_for(@article.user), user_path(@article.user) %>
               </div>
               <div class="card-body">
-                <div class="card-text text-left"><%= simple_format(@article.description) %></div>
+                <div class="card-text text-start"><%= simple_format(@article.description) %></div>
                 <%= link_to 'Edit', edit_article_path(@article), class: "btn btn-outline-primary" %>
                 <%= link_to 'Delete', article_path(@article), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-outline-danger" %>
               </div>
