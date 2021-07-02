@@ -34,12 +34,15 @@
           <li><hr class="dropdown-divider"></li>
           <% end %>
           <li><%= link_to "View Articles", articles_path, class: "dropdown-item text-gray" %></li>
-          <li><%= link_to "New Article", new_article_path, class: "dropdown-item text-gray" %></li>
+          <li><%= link_to "View Bloggers", users_path, class: "dropdown-item text-gray" %></li>
+          <% if logged_in? %>
           <li><hr class="dropdown-divider"></li>
+          <li><%= link_to "New Article", new_article_path, class: "dropdown-item text-gray" %></li>
+          <% end %>
           <% unless logged_in? %>
+          <li><hr class="dropdown-divider"></li>
           <li><%= link_to "Sign up", signup_path, class: "dropdown-item text-gray" %></li>
           <% end %>
-          <li><%= link_to "Bloggers", users_path, class: "dropdown-item text-gray" %></li>
           <li><hr class="dropdown-divider"></li>
           <% if logged_in? %>
           <li><%= link_to "Log out", logout_path, method: :delete, class: "dropdown-item text-gray" %></li>
