@@ -26,11 +26,12 @@
 
          <div class="form-group row justify-content-center mt-3">
            <%= f.submit(@user.new_record? ? "Sign up" : "Update Account", class: "btn btn-outline-light btn-lg col-auto") %>
+           <%= link_to 'Delete Account', user_path(current_user), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-outline-light btn-lg col-auto ms-4 text-danger" %>
          </div>
        <% end %>
      </div>
      <div class="mb-3 text-center">
-       <%= link_to '[ Cancel ]', articles_path, class: "text-info" %>
+       <%= link_to '[ Cancel ]', user_path(current_user), class: "text-info" %>
      </div>
    </div>
  </div>
