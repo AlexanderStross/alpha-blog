@@ -51,10 +51,11 @@
         <li class="nav-item dropdown">
          <a class="nav-link dropdown-toggle text-gray" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
            Hi, <%= current_user.username %>
+           <%= " (Admin)" if current_user.admin? %>
          </a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <li><%= link_to "View Profile", user_path(current_user), class: "dropdown-item text-gray"  %></li>
-          <li><%= link_to "Edit Profile", edit_user_path(current_user), class: "dropdown-item text-gray"  %></li>
+          <li><%= link_to "View Profile", user_path(current_user), class: "dropdown-item text-gray" unless current_page?(user_path(current_user)) %></li>
+          <li><%= link_to "Edit Profile", edit_user_path(current_user), class: "dropdown-item text-gray" unless current_page?(edit_user_path(current_user)) %></li>
           <li><hr class="dropdown-divider"></li>
           <li><%= link_to "New Article", new_article_path, class: "dropdown-item text-gray" %></li>
           <li><hr class="dropdown-divider"></li>

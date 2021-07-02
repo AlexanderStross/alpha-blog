@@ -19,7 +19,6 @@ class UsersController < ApplicationController
   end
 
   def update
-
     if @user.update(user_params)
       flash[:success] = "Your account informatoin was successfully updated"
       redirect_to user_path(current_user)
@@ -40,10 +39,15 @@ class UsersController < ApplicationController
   end
 
 def destroy
-  @user.destroy
-  session[:user_id] = nil
-  flash[:success] = "Account and all associated artciles have been deleted"
-  redirect_to articles_path
+  unless current_user.admin? && (User.where(:admin => true).count < 2)
+    @user.destroy
+    session[:user_id] = nil
+    flash[:success] = "Account and all associated artciles have been deleted"
+    redirect_to articles_path
+  else
+    flash.now[:danger] = "You may not detroy your account as you are the only administrator"
+    redirect_to request.referrer
+  end
 end
 
   private
@@ -57,7 +61,7 @@ end
   end
 
   def require_same_user
-    if current_user != @user
+    if current_user != @user && !current_user.admin?
       flash[:warning] = "You can only edit or delete your own account"
       redirect_to @user
     end

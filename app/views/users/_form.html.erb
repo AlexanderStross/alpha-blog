@@ -26,12 +26,16 @@
 
          <div class="form-group row justify-content-center mt-3">
            <%= f.submit(@user.new_record? ? "Sign up" : "Update Account", class: "btn btn-outline-light btn-lg col-auto") %>
-           <%= link_to 'Delete Account', user_path(current_user), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-outline-light btn-lg col-auto ms-4 text-danger" %>
+           <% if logged_in? && (@user == current_user  || current_user.admin?) %>
+             <% unless @user == current_user && (User.where(:admin => true).count < 2) %>
+               <%= link_to 'Delete Account', user_path(current_user), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-outline-light btn-lg col-auto ms-4 text-danger" %>
+              <% end %>
+            <% end %>
          </div>
        <% end %>
      </div>
      <div class="mb-3 text-center">
-       <%= link_to '[ Cancel ]', user_path(current_user), class: "text-info" %>
+       <%= link_to '[ Cancel ]', url_for(:back), class: "text-info" %>
      </div>
    </div>
  </div>

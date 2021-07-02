@@ -17,14 +17,13 @@
           </div>
         </div>
 
-
         <div class="form-group row justify-content-center mt-3">
           <%= f.submit class: "btn btn-outline-light btn-lg col-auto" %>
         </div>
       <% end %>
     </div>
     <div class="mb-3 text-center">
-      <%= link_to '[ Cancel ]', articles_path, class: "text-info" %>
+       <%= link_to '[ Cancel ]', url_for(:back), class: "text-info" %>
     </div>
   </div>
 </div>

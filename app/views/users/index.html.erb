@@ -19,6 +19,11 @@
             <% if logged_in? && user == current_user %>
               <%= link_to 'Edit Profile', edit_user_path(user), class: "btn btn-outline-primary" %>
             <% end %>
+            <% if current_user.admin? %>
+            <% unless user == current_user && (User.where(:admin => true).count < 2) %>
+             <%= link_to 'Delete Account', user_path(current_user), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-outline-primary text-danger" %>
+             <% end %>
+             <% end %>
             <div class="card-footer text-muted mt-4">
               <Small>Created <%= time_ago_in_words(user.created_at) %> ago,
                edited <%= time_ago_in_words(user.updated_at) %> ago </Small>
