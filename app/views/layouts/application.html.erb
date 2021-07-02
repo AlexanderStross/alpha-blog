@@ -12,6 +12,8 @@
 
   </head>
 
+  <% current_user %>
+
   <body class="d-flex flex-column">
     <div id="page-content">
       <%= render 'layouts/tnav' %>
@@ -24,6 +26,7 @@
       <%= yield %>
     </div>
     <%= render 'layouts/footer' %>
+    
     <script type="text/javascript">
       var nav = document.querySelector('nav');
       window.addEventListener('scroll', function () {
@@ -33,6 +36,12 @@
           nav.classList.remove('bg-dark', 'animated', 'fadein');
         }
     });
+
+    window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove();
+    });
+}, 3000);
 </script>
   </body>
 </html>

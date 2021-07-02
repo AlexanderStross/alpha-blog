@@ -29,6 +29,10 @@
            Blog
          </a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <% if logged_in? %>
+          <li><%= link_to current_user.username, edit_user_path(current_user), class: "dropdown-item text-gray" %></li>
+          <li><hr class="dropdown-divider"></li>
+          <% end %>
           <li><%= link_to "View Articles", articles_path, class: "dropdown-item text-gray" %></li>
           <li><%= link_to "New Article", new_article_path, class: "dropdown-item text-gray" %></li>
           <li><hr class="dropdown-divider"></li>
