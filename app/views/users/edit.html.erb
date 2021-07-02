@@ -1,6 +1,2 @@
     <h1 class="text-center">Edit User Profile</h1>
-    <% if logged_in? && @user == current_user %>
       <%= render 'form' %>
-    <% else %>
-      <% flash.now[:danger] = "You are not authorized to edit this user" %>
-    <% end %>

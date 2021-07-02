@@ -1,39 +1,69 @@
-<!-- Navbar  -->
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark p-md-2">
+<!-- Navbar -->
+<nav class="navbar shadow fixed-top navbar-expand-lg navbar-dark scrolling-navbar p-md-1">
   <div class="container">
-    <strong><%= link_to "Alpha Photography Blog", root_path, class: "navbar-brand", id: "logo" %></strong>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+
+    <!-- Brand -->
+    <%= link_to "Alpha Photography Blog", root_path, class: "navbar-brand test-muted text-uppercase", id: "logo" %>
+
+    <!-- Collapse -->
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <div class="mx-auto"></div>
+    <!-- Links -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+
+    <!-- Right -->
+    <div class="mx-auto mr-auto"></div>
       <ul class="navbar-nav">
-        <li class="nav-item">
+        <li class="nav-item active">
           <%= link_to "Home", root_path, class: "nav-link text-gray" %>
         </li>
         <li class="nav-item">
           <%= link_to "About", about_path, class: "nav-link text-gray" %>
         </li>
-        <li class="nav-item">
-          <%= link_to "Blog", articles_path, class: "nav-link text-gray" %>
-        </li>
+        <li class="nav-item dropdown">
+         <a class="nav-link dropdown-toggle text-gray" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+           Blog
+         </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li><%= link_to "View Articles", articles_path, class: "dropdown-item text-gray" %></li>
+          <li><%= link_to "View Bloggers", users_path, class: "dropdown-item text-gray" %></li>
+          <% unless logged_in? %>
+          <li><hr class="dropdown-divider"></li>
+          <li><%= link_to "Sign up", signup_path, class: "dropdown-item text-gray" %></li>
+          <% end %>
+         </ul>
+       </li>
         <li class="nav-item">
           <a class="nav-link text-gray" href="#">Pricing</a>
         </li>
         <li class="nav-item">
           <a class="nav-link text-gray" href="#">Contact</a>
         </li>
+        <% unless logged_in? %>
+        <li class="nav-item">
+          <%= link_to "Log in", login_path, class: "nav-link text-gray" %>
+        </li>
+        <% else %>
+        <li class="nav-item dropdown">
+         <a class="nav-link dropdown-toggle text-gray" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+           Hi, <%= current_user.username %>
+         </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li><%= link_to "View Profile", user_path(current_user), class: "dropdown-item text-gray"  %></li>
+          <li><%= link_to "Edit Profile", edit_user_path(current_user), class: "dropdown-item text-gray"  %></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><%= link_to "New Article", new_article_path, class: "dropdown-item text-gray" %></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><%= link_to "Log out", logout_path, method: :delete, class: "dropdown-item text-gray" %></li>
+         </ul>
+       </li>
+       <% end %>
       </ul>
     </div>
   </div>
 </nav>
-<!-- end NavBar -->
+  <!-- end Navbar -->
