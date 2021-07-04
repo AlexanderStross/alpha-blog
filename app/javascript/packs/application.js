@@ -22,3 +22,17 @@ new WOW().init();
 // import the app/assets/stylesheets/application.css
 // file from the previous step.
 import "../../assets/stylesheets/application"
+
+
+window.setTimeout(function() {
+$(".alert").fadeTo(500, 0).slideUp(500, function(){
+    $(this).remove();
+});
+}, 3000);
+
+// function hideNotice() {
+//   setInterval(function() {
+//     document.querySelector('.notification').style.display = "none";
+//   }, 3000);
+// }
+// hideNotice();
