@@ -29,7 +29,8 @@ class UsersController < ApplicationController
 
   def create
     unless !!User.first
-      @user = User.new(admin_params)
+      @user = User.new(user_params)
+      @user.admin = true
     else
       @user = User.new(user_params)
     end
@@ -63,10 +64,6 @@ def toggle_admin
 end
 
   private
-
-  def admin_params
-    params.require(:user).permit(:username, :email, :password)[:admin] = true
-  end
 
   def user_params
     params.require(:user).permit(:username, :email, :password)
