@@ -6,6 +6,7 @@
 
   <div class="text-center mt-4">
     <% if logged_in? && (@user == current_user || !current_user.admin?) %>
+      <%= link_to 'New Article', new_article_path, class: "btn btn-outline-info" %>
       <%= link_to "Edit your profile", edit_user_path(@user), class: "btn btn-outline-primary ms-1 me-1" %>
     <% end %>
     <% if logged_in? && (@user == current_user  || current_user.admin?) %>
