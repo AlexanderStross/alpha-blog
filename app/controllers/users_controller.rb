@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    before_action :set_user, only: [:show, :edit, :update, :destroy]
+    before_action :set_user, only: [:show, :edit, :update, :destroy, :toggle_admin]
     before_action :require_user, only: [:edit, :update]
     before_action :require_same_user, only: [:edit, :update, :destory]
 
@@ -39,15 +39,19 @@ class UsersController < ApplicationController
   end
 
 def destroy
-  unless current_user.admin? && (User.where(:admin => true).count < 2)
+  unless @user.admin? && (User.where(:admin => true).count < 2)
     @user.destroy
-    session[:user_id] = nil
+    session[:user_id] = nil unless current_user.admin?
     flash[:success] = "Account and all associated artciles have been deleted"
     redirect_to articles_path
   else
-    flash.now[:danger] = "You may not detroy your account as you are the only administrator"
+    flash[:danger] = "You may not detroy your account as you are the only administrator"
     redirect_to request.referrer
   end
+end
+
+def toggle_admin
+    @user.toggle!(:admin)
 end
 
   private
