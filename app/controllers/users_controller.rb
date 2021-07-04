@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    if User.nil?
+    unless !!User.first
       @user = User.new(admin_params)
     else
       @user = User.new(user_params)
