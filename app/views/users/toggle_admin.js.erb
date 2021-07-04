@@ -1,6 +1,6 @@
 <% if @user.admin? %>
-    $(".user-<%= @user.id %> > a").html('Demote from Admins').removeClass('btn-outline-secondary').addClass('btn-outline-danger')
+    $(".user-<%= @user.id %> > a").html('Demote from Admins').removeClass('btn-secondary').addClass('btn-danger')
 <% else %>
-    $(".user-<%= @user.id %> > a").html('Promote to Admins').removeClass('btn-outline-danger').addClass('btn-outline-secondary')
+    $(".user-<%= @user.id %> > a").html('Promote to Admins').removeClass('btn-danger').addClass('btn-secondary')
 <% end %>
 $("#user-status-user-<%= @user.id %>").html("<%= @user.admin ? "(Promoted to admin)" : "(Demoted to regular user)"%>")
