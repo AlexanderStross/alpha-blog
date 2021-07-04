@@ -64,8 +64,8 @@ end
 
   private
 
-  def user_params
-    params.require(:user).permit(:username, :email, :password, admin: true)
+  def admin_params
+    params.require(:user).permit(:username, :email, :password)[:admin] = true
   end
 
   def user_params
