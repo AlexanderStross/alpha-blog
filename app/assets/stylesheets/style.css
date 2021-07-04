@@ -1,10 +1,18 @@
-/* Tansparent Nav Bar */
+/* Tansparent responsive Nav Bar */
 @media (min-width: 800px) and (max-width: 850px) {
         .navbar:not(.top-nav-collapse) {
             background: #1C2331!important;
         }
     }
-.view,body,html{height:100%}.navbar{background-color:rgba(0,0,0,.2)}.page-footer,.top-nav-collapse{background-color:#1C2331}@media only screen and (max-width:768px){.navbar{background-color:#1C2331}}
+.view,body,html{height:100%}.navbar{background-color:rgba(0,0,0,.1)}.page-footer,.top-nav-collapse{background-color:#1C2331}@media only screen and (max-width:768px){.navbar{background-color:#1C2331}}
+
+.navbar {
+    -webkit-transition: background-color 0.5s ease-in-out;
+    -moz-transition: background-color 0.5s ease-in-out;
+    -ms-transition: background-color 0.5s ease-in-out;
+    -o-transition: background-color 0.5s ease-in-out;
+    transition: background-color 0.5s ease-in-out;
+}
 
 /* Sticky Footer Classes */
 

@@ -28,9 +28,17 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    if User.nil?
+      @user = User.new(admin_params)
+    else
+      @user = User.new(user_params)
+    end
     if @user.save
-      flash[:success] = "Welcome to the Alpha Blog #{@user.username}, you have successfuly signed up"
+      if !@user.admin?
+        flash[:success] = "Welcome to the Alpha Blog #{@user.username}, you have successfuly signed up"
+      else
+        flash[:success] = "Welcome to the Alpha Blog #{@user.username}, you have successfuly created your Admin account"
+      end
       session[:user_id] = @user.id
       redirect_to articles_path
     else
@@ -41,7 +49,7 @@ class UsersController < ApplicationController
 def destroy
   unless @user.admin? && (User.where(:admin => true).count < 2)
     @user.destroy
-    session[:user_id] = nil unless current_user.admin?
+    session[:user_id] = nil unless @uwer == current_user
     flash[:success] = "Account and all associated artciles have been deleted"
     redirect_to articles_path
   else
@@ -55,6 +63,10 @@ def toggle_admin
 end
 
   private
+
+  def user_params
+    params.require(:user).permit(:username, :email, :password, admin: true)
+  end
 
   def user_params
     params.require(:user).permit(:username, :email, :password)

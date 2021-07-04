@@ -30,6 +30,13 @@ $(".alert").fadeTo(500, 0).slideUp(500, function(){
 });
 }, 3000);
 
+$(window).scroll(function () {
+if ($(window).scrollTop() >= 50) {
+$('.navbar').fadeTo(0, 500).css('background','black');
+} else {
+$('.navbar').fadeTo(0, 500).css('background','transparent');
+}
+});
 // function hideNotice() {
 //   setInterval(function() {
 //     document.querySelector('.notification').style.display = "none";
