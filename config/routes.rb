@@ -8,6 +8,7 @@ Rails.application.routes.draw do
         patch :toggle_admin
     end
   end
+  resources sessions, only: [:new, :create, :destroy], path_names: { new: "login", create: "login", destroy: "logout" }
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
