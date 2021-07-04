@@ -6,7 +6,7 @@
           <div class="card text-center shadow mb-3 bg-white rounded">
             <div class="card-header fst-italic">
               <% if article.user %>
-                by <%= link_to article.user.username, user_path(article.user), class: "text-muted" %>
+                by <%= link_to article.user.username, user_path(article.user), class: "link-secondary" %>
               <% end %>
             </div>
             <div class="card-body">
