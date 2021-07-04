@@ -38,10 +38,10 @@
          </ul>
        </li>
         <li class="nav-item">
-          <a class="nav-link text-gray" href="#">Pricing</a>
+          <%= link_to "Pricing", pricing_path, class: "nav-link text-gray" %>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-gray" href="#">Contact</a>
+          <%= link_to "Contact", contact_path, class: "nav-link text-gray" %>
         </li>
         <% unless logged_in? %>
         <li class="nav-item">
