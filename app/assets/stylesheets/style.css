@@ -175,6 +175,7 @@ body {
   }
 }
 
+/*pagination*/
 
 .flickr_pagination {
   text-align: center;
@@ -192,7 +193,7 @@ body {
     color: #ff0084; }
   .flickr_pagination a {
     border: 1px solid #dddddd;
-    color: #0063dc;
+    color: #4c5f77;
     text-decoration: none; }
     .flickr_pagination a:hover, .flickr_pagination a:focus {
       border-color: grey;
