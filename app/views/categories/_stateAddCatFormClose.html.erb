@@ -1,0 +1,24 @@
+<% if @category != nil && @id.to_i != 0 %>
+  <div id="category-<%= @category.id %>" class="d-flex bd-highlight border-bottom update-cat un-wrap-me">
+    <div id="category-<%= @category.name.parameterize(separator: '-')  %>" class="p-2 flex-grow-1 bd-highlight"><%= link_to @category.name, category_path(@category), class: "link-secondary"%></div>
+    <% if logged_in? && current_user.admin? %>
+      <div class="p-2 bd-highlight">
+        <%= link_to "Edit", edit_category_path(@category), class: "btn btn-outline-warning btn-sm me-md-2", id: "edit-category-#{@category.id}", remote: true %>
+      </div>
+      <div class="p-2 bd-highlight">
+        <%= link_to "Delete", category_path(@category), class: "btn btn-outline-danger btn-sm", id: "delete-category-#{@category.id}" %>
+      </div>
+    <% end %>
+    <div class="p-2 bd-highlight">
+      <span class="badge bg-primary rounded-pill">14</span>
+    </div>
+  </div>
+  <% if logged_in? && current_user.admin? %>
+    <Div class="p-2 bd-highlight add-cat"><%= link_to "Add Category", new_category_path, remote: true, class: "btn btn-primary" %>
+    </div>
+  <% end %>
+<% else %>
+  <% if logged_in? && current_user.admin? %>
+    <%= link_to "Add Category", new_category_path, remote: true, class: "btn btn-primary" %>
+  <% end %>
+<% end %>

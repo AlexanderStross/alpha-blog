@@ -1,0 +1,18 @@
+<!-- Content -->
+<h1 class="text-center mb-3">Categories</h1>
+<div class="flickr_pagination mb-3">
+  <%= will_paginate @catagories, :container => false %>
+</div>
+<%= render 'listCategories' %>
+<div class="container col-8 mt-2">
+  <div id="notice"></div>
+  <div id="errors"></div>
+</div>
+<div class="flickr_pagination mt-3">
+  <%= will_paginate @catagories, :container => false %>
+</div>
+<!-- End Content -->
+
+<div class="mb-3 mt-3 text-center">
+  <%= link_to '[ Back ]', url_for(:back), class: "link-secondary" %>
+</div>

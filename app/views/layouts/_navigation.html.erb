@@ -31,6 +31,7 @@
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
           <li><%= link_to "View Articles", articles_path, class: "dropdown-item text-gray" %></li>
           <li><%= link_to "View Contributors", users_path, class: "dropdown-item text-gray" %></li>
+          <li><%= link_to "View Categories", categories_path, class: "dropdown-item text-gray" %></li>
           <% unless logged_in? %>
           <li><hr class="dropdown-divider"></li>
           <li><%= link_to "Sign up", signup_path, class: "dropdown-item text-gray" %></li>

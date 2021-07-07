@@ -1,0 +1,11 @@
+<%= form_with(model: @category, class: "shadow p-2 mb-3 bg-primary rounded", local: false) do |f| %>
+<div class="d-flex bd-highlight form-group row">
+  <div class="flex-grow-1 bd-highlight">
+    <%= f.text_field :name, class: "form-control-sm shadow rounded", placeholder: "Enter category name" %>
+  </div>
+</div>
+<div class="d-flex bd-highlight">
+  <div class="p-2 bd-highlight"><%= f.submit "Save Category", class: "btn btn-outline-light btn-sm" %></div>
+  <div class="p-2 bd-highlight"><%= link_to "Cancel", categories_path(id: 0), remote: true, class: "btn btn-outline-light btn-sm col-auto"  %></div>
+</div>
+<% end %>

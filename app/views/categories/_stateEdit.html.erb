@@ -1,0 +1,14 @@
+<%= form_with(model: @category, class: "input-group d-flex bd-highlight", local: false) do |f| %>
+      <div id="category-<%= @category.name.parameterize(separator: '-') %>" class="p-2 flex-grow-1 bd-highlight">
+          <%= f.text_field :name, class: "form-control-sm shadow rounded", placeholder: "Enter category name" %>
+        </div>
+        <div class="p-2 bd-highlight">
+          <%= f.submit "Save", class: "btn btn-outline-warning btn-sm me-md-2", id: "save-edit-category-#{@category.id}" %>
+        </div>
+        <div class="p-2 bd-highlight">
+          <%= link_to "Cancel", categories_url(id: @category.id), remote: true, class: "btn btn-outline-danger btn-sm", id: "cancel-edit-category-#{@category.id}" %>
+        </div>
+      <div class="p-2 bd-highlight">
+        <span class="badge bg-primary rounded-pill">14</span>
+      </div>
+<% end %>

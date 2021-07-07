@@ -1,0 +1,8 @@
+$('#category-<%= @category.id %>.update-cat-unsaved').html("<%= j (render partial: 'stateReturn') %>").removeClass("update-cat-unsaved").addClass("update-cat");
+$('#notice').html("<%= j (render partial: 'layouts/messages') %>");
+$('#errors').html("<%= j (render partial: 'shared/errors', locals: { obj: @category } ) %>");
+window.setTimeout(function() {
+$(".alert").fadeTo(500, 0).slideUp(500, function(){
+    $(this).remove();
+});
+}, 3000);

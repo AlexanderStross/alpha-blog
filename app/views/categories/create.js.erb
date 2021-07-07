@@ -1,0 +1,9 @@
+$('.add-cat-unsaved').html("<%= j render(:partial => 'stateAddCatFormClose') %>").removeClass("add-cat-unsaved").addClass("add-cat");
+$('#notice').html("<%= j (render partial: 'layouts/messages') %>");
+$('#errors').html("<%= j (render partial: 'shared/errors', locals: { obj: @category } ) %>");
+$('.un-wrap-me').unwrap().removeClass("un-wrap-me")
+window.setTimeout(function() {
+$(".alert").fadeTo(500, 0).slideUp(500, function(){
+    $(this).remove();
+});
+}, 3000);

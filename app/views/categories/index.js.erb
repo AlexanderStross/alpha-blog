@@ -1,0 +1,6 @@
+<% if @id.to_i > 0 %>
+$('#category-<%= @category.id %>.update-cat-unsaved').html("<%= j (render partial: 'stateReturn') %>").removeClass("update-cat-unsaved").addClass("update-cat");
+<% end %>
+<% if @id.to_i == 0 %>
+$('.add-cat-unsaved').html("<%= j render(:partial => 'stateAddCatFormClose') %>").removeClass("add-cat-unsaved").addClass("add-cat");
+<% end %>

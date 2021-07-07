@@ -7,10 +7,11 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new'
   resources :users, except: [:new] do
     member do
-        patch :toggle_admin
+      patch :toggle_admin
     end
   end
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
+  resources :categories, except: [:destroy]
 end

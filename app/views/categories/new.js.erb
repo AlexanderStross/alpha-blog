@@ -1,0 +1,7 @@
+$(".add-cat").html("<%= j render(:partial => 'stateAddCatFormOpen') %>").removeClass("add-cat").addClass("add-cat-unsaved")
+$('#errors').html("<%= j (render partial: 'shared/errors', locals: { obj: @category } ) %>");
+window.setTimeout(function() {
+$(".alert").fadeTo(500, 0).slideUp(500, function(){
+    $(this).remove();
+});
+}, 3000);
