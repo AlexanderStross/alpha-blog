@@ -51,6 +51,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
+    @articles = @category.articles.paginate(page: params[:page], per_page: 5)
     respond_to do |format|
       format.js { render layout: false }
       format.html do

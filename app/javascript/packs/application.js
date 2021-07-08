@@ -23,7 +23,6 @@ new WOW().init();
 // file from the previous step.
 import "../../assets/stylesheets/application"
 
-
 window.setTimeout(function() {
 $(".alert").fadeTo(500, 0).slideUp(500, function(){
     $(this).remove();

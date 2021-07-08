@@ -9,6 +9,6 @@
           <%= link_to "Cancel", categories_url(id: @category.id), remote: true, class: "btn btn-outline-danger btn-sm", id: "cancel-edit-category-#{@category.id}" %>
         </div>
       <div class="p-2 bd-highlight">
-        <span class="badge bg-primary rounded-pill">14</span>
+        <span class="badge bg-primary rounded-pill"><%= @category.articles.count %></span>
       </div>
 <% end %>
