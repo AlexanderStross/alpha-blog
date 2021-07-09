@@ -1,7 +1,10 @@
 <%= form_with(model: @category, class: "input-group d-flex bd-highlight", local: false) do |f| %>
-      <div id="category-<%= @category.name.parameterize(separator: '-') %>" class="p-2 flex-grow-1 bd-highlight">
+      <div id="category-<%= @category.name.parameterize(separator: '-') %>" class="p-2 flex-grow-1 bd-highlight active">
           <%= f.text_field :name, class: "form-control-sm shadow rounded", placeholder: "Enter category name" %>
         </div>
+        <div id="category-<%= @category.name.parameterize(separator: '-') %>-meta-descirption" class="p-2 flex-grow-1 bd-highlight">
+            meta description: <%= f.text_field :meta_description, class: "form-control-sm shadow rounded col-xs-4", placeholder: "Enter meta description 70 - 155 characters recommend" %>
+          </div>
         <div class="p-2 bd-highlight">
           <%= f.submit "Save", class: "btn btn-outline-warning btn-sm me-md-2", id: "save-edit-category-#{@category.id}" %>
         </div>

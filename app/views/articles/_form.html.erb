@@ -3,34 +3,37 @@
     <div class="col-10">
       <%= render 'shared/errors', obj: @article %>
       <%= form_with(model: @article, class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>
-        <div class="form-group row">
-          <%= f.label :title, class: "col-2 col-form-label text-light" %>
-          <div class="col-10">
-            <%= f.text_field :title, class: "form-control shadow rounded", placeholder: "Title of article" %>
-          </div>
+      <div class="form-group row">
+        <%= f.label :title, class: "col-2 col-form-label text-light" %>
+        <div class="col-10">
+          <%= f.text_field :title, class: "form-control shadow rounded", placeholder: "Title of article" %>
         </div>
+      </div>
 
-        <div class="form-group row mt-2">
-          <%= f.label :description, class: "col-2 col-form-label text-light" %>
-          <div class="col-10">
-            <%= f.text_area :description, rows: 10, class: "form-control shadow rounded", placeholder: "Description of article" %>
-          </div>
+      <div class="form-group row mt-2">
+        <%= f.label :description, class: "col-2 col-form-label text-light" %>
+        <div class="col-10">
+          <%= f.text_area :description, rows: 10, class: "form-control shadow rounded", placeholder: "Description of article" %>
         </div>
+      </div>
 
-        <div class="form-group row mt-2">
-          <%= f.label :category, class: "col-2 col-form-label text-light" %>
-          <div class="col-10">
-            <%= f.collection_check_boxes :category_ids, Category.all, :id, :name, class: "btn btn-secondary bt-sm" %>
-          </div>
-        </div>
-
-        <div class="form-group row justify-content-center mt-3">
-          <%= f.submit class: "btn btn-outline-light btn-lg col-auto" %>
-        </div>
-      <% end %>
+      <div class="form-group row mt-2">
+        <%= f.label :category, class: "col-2 col-form-label text-light" %>
+        <div class="col-10">
+          <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |b| %>
+          <%= b.check_box(type: "checkbox", class: "btn-check", autocomplete: "off") %>
+          <%= b.label(:class => 'btn btn-secondary btn-sm m-1') %>
+        <% end %>
+      </div>
     </div>
-    <div class="mb-3 text-center">
-       <%= link_to '[ Cancel ]', url_for(:back), class: "link-secondary" %>
+
+    <div class="form-group row justify-content-center mt-3">
+      <%= f.submit class: "btn btn-outline-light btn-lg col-auto" %>
     </div>
-  </div>
+  <% end %>
+</div>
+<div class="mb-3 text-center">
+  <%= link_to '[ Cancel ]', url_for(:back), class: "link-secondary" %>
+</div>
+</div>
 </div>

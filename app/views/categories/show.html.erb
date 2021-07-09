@@ -1,5 +1,5 @@
   <h1 class="text-center mb-4"><%= @category.name %></h1>
-
+<h4 class="text-center mb-4"><%= @category.meta_description %></h4>
   <div class="flickr_pagination">
     <%= will_paginate @articles, :container => false %>
   </div>
