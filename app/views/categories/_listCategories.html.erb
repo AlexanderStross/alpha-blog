@@ -4,7 +4,7 @@
   <% cache category do %>
   <div id="category-<%= category.id %>" class="d-flex bd-highlight border-bottom update-cat">
       <div id="category-<%= category.name.parameterize(separator: '-')  %>" class="p-2 flex-grow-1 bd-highlight"><%= link_to category.name, category_path(category), class: "link-secondary"%></div>
-      <div id="category-<%= category.name.parameterize(separator: '-')  %>-meta-descirption" class="p-2 flex-grow-1 bd-highlight">meta description: <%= category.meta_description %></div>
+      <div id="category-<%= category.name.parameterize(separator: '-')  %>-meta-descirption" class="p-2 flex-grow-1 bd-highlight">[META DESCRIPTION]: <%= category.meta_description %></div>
       <% if logged_in? && current_user.admin? %>
         <div class="p-2 bd-highlight">
           <%= link_to "Edit", edit_category_path(category), class: "btn btn-outline-warning btn-sm me-md-2", id: "edit-category-#{category.id}", remote: true %>
