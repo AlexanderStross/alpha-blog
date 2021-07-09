@@ -18,11 +18,11 @@
       </div>
 
       <div class="form-group row mt-2">
-        <%= f.label :category, class: "col-2 col-form-label text-light" %>
+        <%= f.label :category, "Catagories", class: "col-2 col-form-label text-light" %>
         <div class="col-10">
-          <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |b| %>
+          <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |b| %>
           <%= b.check_box(type: "checkbox", class: "btn-check", autocomplete: "off") %>
-          <%= b.label(:class => 'btn btn-secondary btn-sm m-1') %>
+          <%= b.label(:class => 'btn btn-secondary shadow btn-sm m-1') %>
         <% end %>
       </div>
     </div>
