@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
-
-  helper_method :current_user, :logged_in?, :promote_to_admin
+  helper_method :current_user, :logged_in?, :promote_to_admin, :get_featured_Categories
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
@@ -10,10 +9,13 @@ class ApplicationController < ActionController::Base
   end
 
   def require_user
-    if !logged_in?
-      flash[:warning] = "You must be logged in to perform that action"
+    unless logged_in?
+      flash[:warning] = 'You must be logged in to perform that action'
       redirect_to login_path
     end
   end
 
+  def get_featured_Categories
+    @fcs = Category.where(featured: true)
+  end
 end

@@ -32,15 +32,30 @@
           <li><%= link_to "View Articles", articles_path, class: "dropdown-item text-gray" %></li>
           <li><%= link_to "View Contributors", users_path, class: "dropdown-item text-gray" %></li>
           <li><%= link_to "View Categories", categories_path, class: "dropdown-item text-gray" %></li>
-          <% unless logged_in? %>
+          <% if logged_in? %>
           <li><hr class="dropdown-divider"></li>
+          <li><%= link_to "New Article", new_article_path, class: "dropdown-item text-gray" %></li>
+          <% else %>
           <li><%= link_to "Sign up", signup_path, class: "dropdown-item text-gray" %></li>
           <% end %>
          </ul>
+          <% if !!get_featured_Categories %>
+          <li class="nav-item dropdown">
+           <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+           Featured
+         </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <% get_featured_Categories.each do |fc| %>
+          <% cache fc do %>
+           <li id="featured-link-<%= fc.id %>"><%= link_to fc.name, category_path(fc), class: "dropdown-item text-gray" %></li>
+          <% end %>
+        <% end %>
+         </ul>
+        <% end %>
        </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <%= link_to "Pricing", pricing_path, class: "nav-link text-light" %>
-        </li>
+        </li> -->
         <li class="nav-item">
           <%= link_to "Contact", contact_path, class: "nav-link text-light" %>
         </li>
@@ -57,8 +72,6 @@
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
           <li><%= link_to "View Profile", user_path(current_user), class: "dropdown-item text-gray" unless current_page?(user_path(current_user)) %></li>
           <li><%= link_to "Edit Profile", edit_user_path(current_user), class: "dropdown-item text-gray" unless current_page?(edit_user_path(current_user)) %></li>
-          <li><hr class="dropdown-divider"></li>
-          <li><%= link_to "New Article", new_article_path, class: "dropdown-item text-gray" %></li>
           <li><hr class="dropdown-divider"></li>
           <li><%= link_to "Log out", logout_path, method: :delete, class: "dropdown-item text-gray" %></li>
          </ul>

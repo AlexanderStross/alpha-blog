@@ -6,8 +6,11 @@
       <div id="category-<%= category.name.parameterize(separator: '-')  %>" class="p-2 flex-grow-1 bd-highlight"><%= link_to category.name, category_path(category), class: "link-secondary"%></div>
       <div id="category-<%= category.name.parameterize(separator: '-')  %>-meta-descirption" class="p-2 flex-grow-1 bd-highlight"><%= category.meta_description %></div>
       <% if logged_in? && current_user.admin? %>
+      <div class="p-2 bd-highlight">
+        <%= link_to "#{ category.featured? ? 'Featured' : 'Feature?' }", edit_category_path(category,togglefeatured: true), remote: true, id: "edit-featured-category-#{category.id}", class: "btn btn-outline-success btn-sm me-md-2 #{ category.featured? ? 'active' : '' }" %>
+      </div>
         <div class="p-2 bd-highlight">
-          <%= link_to "Edit", edit_category_path(category), class: "btn btn-outline-warning btn-sm me-md-2", id: "edit-category-#{category.id}", remote: true %>
+          <%= link_to "Edit", edit_category_path(category,editcat: true), class: "btn btn-outline-warning btn-sm me-md-2", id: "edit-category-#{category.id}", remote: true %>
         </div>
         <div class="p-2 bd-highlight">
           <%= link_to "Delete", category_path(category), method: :delete, remote: true, data: { confirm: "Are you sure?"}, class: "btn btn-outline-danger btn-sm", id: "delete-category-#{category.id}" %>
