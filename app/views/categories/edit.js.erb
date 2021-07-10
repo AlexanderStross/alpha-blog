@@ -1,7 +1,7 @@
 <% if params[:togglefeatured] %>
   <% if @category.featured? %>
     $('#edit-featured-category-<%= @category.id %>').html('Featured').addClass('active');
-    $('#featured-menu').append('<li id=\"featured-link-<%= @category.id %>\"><%=link_to @category.name, category_path( @category ), class: "dropdown-item text-gray" %></li>');
+    $('#featured-menu').append('<li id=\"featured-link-<%= @category.id %>\"><%= link_to((@category.name + " " + content_tag(:span, @category.article_count, :class => "badge bg-primary shadow rounded-pill")).html_safe, category_path(@category.id), class: "dropdown-item text-gray") %></li>');
   <% elsif !@category.featured? %>
     $('#edit-featured-category-<%= @category.id %>').html('Feature?').removeClass('active');
     $('#featured-link-<%= @category.id %>').remove();

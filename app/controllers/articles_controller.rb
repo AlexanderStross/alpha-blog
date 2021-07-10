@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: %i[show edit update destroy]
   before_action :require_user, except: %i[show index]
   before_action :require_same_user, only: %i[edit update destory]
-  before_action :get_categories, only: %i[new create]
+  before_action :get_categories, only: %i[new create edit update]
 
   def show
     @categories = @article.categories
@@ -21,9 +21,12 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(artcle_params)
     @article.user = current_user
-
     if @article.save
       flash[:success] = 'Article was saved successfully.'
+      @categories.each do |category|
+        category.article_count = category.articles.count
+        category.save
+      end
       redirect_to @article
     else
       render 'new'
@@ -33,6 +36,10 @@ class ArticlesController < ApplicationController
   def update
     if @article.update(artcle_params)
       flash[:success] = 'Article was saved successfully.'
+      @categories.each do |category|
+        category.article_count = category.articles.count
+        category.save
+      end
       redirect_to @article
     else
       render 'edit'
