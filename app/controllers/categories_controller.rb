@@ -39,7 +39,8 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id]) if params[:id] && params[:id].to_i > 0
     @id = params[:id] if params[:id]
     @category ||= Category.new
-    @categories = Category.paginate(page: params[:page], per_page: 12)
+    categories = Category.all
+    @categories = categories.reorder(:id).paginate(page: params[:page], per_page: 12)
 
     respond_to do |format|
       format.js { render layout: false }
@@ -88,6 +89,27 @@ class CategoriesController < ApplicationController
         format.js { render layout: false }
         format.html do
           render 'edit'
+        end
+      end
+    end
+  end
+
+  def destroy
+    @category = Category.find(params[:id])
+    if @category.destroy
+      respond_to do |format|
+        format.js { render layout: false }
+        flash.now[:success] = 'Category was deleted successfully.'
+        format.html do
+          flash[:success] = 'Category was deleted successfully.'
+          redirect_to request.referrer
+        end
+      end
+    else
+      respond_to do |format|
+        format.js { render layout: false }
+        format.html do
+          redirect_to request.referrer
         end
       end
     end

@@ -1,0 +1,8 @@
+$('#category-<%= @category.id %>.update-cat').remove()
+$('#notice').html("<%= j (render partial: 'layouts/messages') %>");
+$('#errors').html("<%= j (render partial: 'shared/errors', locals: { obj: @category } ) %>");
+window.setTimeout(function() {
+$(".alert").fadeTo(500, 0).slideUp(500, function(){
+    $(this).remove();
+});
+}, 3000);
