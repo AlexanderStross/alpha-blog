@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
-  resources :categories
+  resources :categories do
+    member do
+      patch :toggle_featured
+    end
+  end
   resources :articleCategory, only: [:destory]
 end

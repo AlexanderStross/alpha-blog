@@ -115,6 +115,8 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def toggle_featured; end
+
   private
 
   def category_params
