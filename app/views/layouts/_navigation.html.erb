@@ -44,7 +44,7 @@
            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
            Featured
          </a>
-        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <ul id="featured-menu" class="dropdown-menu" aria-labelledby="navbarDropdown">
         <% get_featured_Categories.each do |fc| %>
           <% cache fc do %>
            <li id="featured-link-<%= fc.id %>"><%= link_to fc.name, category_path(fc), class: "dropdown-item text-gray" %></li>

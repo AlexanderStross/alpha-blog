@@ -1,1 +1,12 @@
-$('#category-<%= @category.id %>.update-cat').html("<%= j (render partial: 'stateEdit') %>").removeClass("update-cat").addClass("update-cat-unsaved");
+<% if params[:togglefeatured] %>
+  <% if @category.featured? %>
+    $('#edit-featured-category-<%= @category.id %>').html('Featured').addClass('active');
+    $('#featured-menu').append('<li id=\"featured-link-<%= @category.id %>\"><%=link_to @category.name, category_path( @category ), class: "dropdown-item text-gray" %></li>');
+  <% elsif !@category.featured? %>
+    $('#edit-featured-category-<%= @category.id %>').html('Feature?').removeClass('active');
+    $('#featured-link-<%= @category.id %>').remove();
+  <% end %>
+<% end %>
+<% if params[:editcat] %>
+  $('#category-<%= @category.id %>.update-cat').html("<%= j (render partial: 'stateEdit') %>").removeClass("update-cat").addClass("update-cat-unsaved");
+<% end %>

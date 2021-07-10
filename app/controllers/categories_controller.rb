@@ -63,29 +63,14 @@ class CategoriesController < ApplicationController
 
   def edit
     @category = Category.find(params[:id])
-    if params[:togglefeatured]
+    if params[:togglefeatured] || params[:editcat]
       toggle_featured
-      text = @category.featured? ? 'Featured' : 'Feature?' end
-    if @category.featured?
-      respond_to do |format|
-        format.js { render js: "$('#edit-featured-category-#{@category.id}').html('#{text}').addClass('active');" }
-        format.html do
-          render 'edit'
-        end
-      end
-    elsif !@category.featured?
-      respond_to do |format|
-        format.js { render js: "$('#edit-featured-category-#{@category.id}').html('#{text}').removeClass('active');" }
-        format.html do
-          render 'edit'
-        end
-      end
-    end
-    if params[:editcat]
-      respond_to do |format|
-        format.js { render layout: false }
-        format.html do
-          render 'edit'
+      if @category.featured?
+        respond_to do |format|
+          format.js { render layout: false }
+          format.html do
+            render 'edit'
+          end
         end
       end
     end
