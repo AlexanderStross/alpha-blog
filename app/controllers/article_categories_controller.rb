@@ -1,5 +1,7 @@
-class ArticleCategoryController < ApplicationController
-  before_action :set_user, only: [:show]
+class ArticleCategoriesController < ApplicationController
+  before_action :set_article_category, only: %i[show desstroy]
+
+  def show; end
 
   def destroy
     @articleCategory.destroy
@@ -10,7 +12,7 @@ class ArticleCategoryController < ApplicationController
 
   private
 
-  def set_user
+  def set_article_category
     @articleCategory = ArticleCategory.find(params[:id])
   end
 end
