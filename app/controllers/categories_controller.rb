@@ -17,7 +17,6 @@ class CategoriesController < ApplicationController
       @id = @category.id
       respond_to do |format|
         format.js { render layout: false }
-        # format.js { render js: "$('#category-<% @id %>').unwrap();" }
         flash.now[:success] = 'Category was succeesfully created'
         format.html do
           flash[:success] = 'Category was succeesfully created'
@@ -40,7 +39,8 @@ class CategoriesController < ApplicationController
     @id = params[:id] if params[:id]
     @category ||= Category.new
     categories = Category.all
-    @categories = categories.reorder(:id).paginate(page: params[:page], per_page: 12)
+    @categories = categories.order('featured DESC').order('article_count DESC').order('name').paginate(page: params[:page],
+                                                                                                       per_page: 12)
 
     respond_to do |format|
       format.js { render layout: false }
