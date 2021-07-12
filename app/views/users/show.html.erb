@@ -1,6 +1,7 @@
 <!-- Content -->
 <div class="wow fadeIn">
-  <h1 class="text-center mb-4"><%= @user.username %>'s profile <span id="user-status-user-<%= @user.id %>" class="text-info"><%= "(admin)" if @user.admin%></span></h1>
+  <h1 class="text-center mb-4"><%= @user.username %>'s profile
+    <span id="user-status-user-<%= @user.id %>" class="text-info"><%= "(admin)" if @user.admin%></span></h1>
 
   <%= gravatar_for @user, size: 200 %>
 
@@ -12,24 +13,27 @@
     <% if logged_in? && (@user == current_user  || current_user.admin?) %>
       <% unless @user.admin? && (User.where(:admin => true).count < 2) %>
         <%= link_to 'Delete Account', user_path(@user), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger col-auto ms-1 me-1" %>
-       <% end %>
-     <% end %>
-    <div class="user-<%= @user.id %>">
-    <% if logged_in? && @user != current_user &&current_user.admin? %>
-    <%= link_to "#{ @user.admin ? 'Demote from Admins' : 'Promote to Admins' }", toggle_admin_user_path(@user), method: :patch, remote: :true, data: {confirm: "Are you sure?"}, class: "btn btn-#{ @user.admin ? 'danger' : 'secondary' } mt-2 mb-2"  %>
+      <% end %>
     <% end %>
+    <div class="user-<%= @user.id %>">
+      <% if logged_in? && @user != current_user &&current_user.admin? %>
+        <%= link_to "#{ @user.admin ? 'Demote from Admins' : 'Promote to Admins' }", toggle_admin_user_path(@user), method: :patch, remote: :true, data: {confirm: "Are you sure?"}, class: "btn btn-#{ @user.admin ? 'danger' : 'secondary' } mt-2 mb-2" %>
+      <% end %>
     </div>
-   </div>
+  </div>
 
-   <div class="text-center">
-   <% @categories.each do | category | %>
-   <% cache category do %>
-   <% if (count = category.articles.where(:user_id => @user.id).count) > 0 %>
-   <%= link_to((category.name + " " + content_tag(:span, count, :class => "badge bg-primary shadow rounded-pill")).html_safe, user_path(@user,:category_id => category.id), class: "btn btn-secondary shadow btn-sm mb-1") %>
-   <% end %>
-   <% end %>
-   <% end %>
-   </div>
+  <div class="container col-8 text-center">
+    <% @categories.each do | category | %>
+      <% cache category do %>
+        <% if (count =(userarticlesbycategory = category.articles.where(:user_id => @user.id)).count) > 0 %>
+          <% cache userarticlesbycategory do %>
+            <%= link_to((category.name + " " + content_tag(:span, count, :class => "badge bg-primary shadow rounded-pill")).html_safe, user_path(@user,:category_id => category.id), class: "btn btn-secondary shadow btn-sm mb-1") %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <%= link_to(('All Articles' + " " + content_tag(:span, @alluserarticles.count, :class => "badge bg-primary shadow rounded-pill")).html_safe, user_path(@user), class: "btn btn-secondary shadow btn-sm mb-1") %>
+  </div>
 
   <h3 class="text-center mt-4">Articles</h3>
   <div class="flickr_pagination">
@@ -43,6 +47,6 @@
 
 <!-- End Content -->
 
-   <div class="mb-3 text-center">
-     <%= link_to '[ Back ]', url_for(:back), class: "link-secondary" %>
-   </div>
+<div class="mb-3 text-center">
+  <%= link_to '[ Back ]', url_for(:back), class: "link-secondary" %>
+</div>

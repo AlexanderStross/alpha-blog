@@ -11,6 +11,7 @@ class UsersController < ApplicationController
                   @user.articles.paginate(page: params[:page], per_page: 5)
                 end
     @categories = Category.all
+    @alluserarticles = @user.articles
   end
 
   def index
