@@ -22,8 +22,10 @@ class ArticlesController < ApplicationController
     if @article.save
       flash[:success] = 'Article was saved successfully.'
       @categories.each do |category|
-        category.article_count = category.articles.count
-        category.save
+        cache category do
+          category.article_count = category.articles.count
+          category.save
+        end
       end
       redirect_to @article
     else
@@ -36,8 +38,10 @@ class ArticlesController < ApplicationController
     if @article.update(artcle_params)
       flash[:success] = 'Article was saved successfully.'
       @categories.each do |category|
-        category.article_count = category.articles.count
-        category.save
+        cache category do
+          category.article_count = category.articles.count
+          category.save
+        end
       end
       redirect_to @article
     else
