@@ -2,11 +2,8 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: %i[show edit update destroy]
   before_action :require_user, except: %i[show index]
   before_action :require_same_user, only: %i[edit update destory]
-  before_action :get_categories, only: %i[new create edit update]
 
-  def show
-    @categories = @article.categories
-  end
+  def show; end
 
   def index
     @articles = Article.paginate(page: params[:page], per_page: 5)
@@ -66,9 +63,5 @@ class ArticlesController < ApplicationController
       flash[:warning] = 'You can only edit or delete your own article'
       redirect_to @article
     end
-  end
-
-  def get_categories
-    @categories = Category.all
   end
 end

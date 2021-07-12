@@ -64,7 +64,7 @@ class CategoriesController < ApplicationController
   def edit
     @category = Category.find(params[:id])
     if params[:togglefeatured] || params[:editcat]
-      toggle_featured
+      toggle_featured if params[:togglefeatured]
       if @category.featured?
         respond_to do |format|
           format.js { render layout: false }

@@ -21,8 +21,14 @@
     </div>
    </div>
 
-   <div class="mb-3 text-center">
-     <%= link_to '[ Back ]', url_for(:back), class: "link-secondary" %>
+   <div class="text-center">
+   <% @categories.each do | category | %>
+   <% cache category do %>
+   <% if (count = category.articles.where(:user_id => @user.id).count) > 0 %>
+   <%= link_to((category.name + " " + content_tag(:span, count, :class => "badge bg-primary shadow rounded-pill")).html_safe, user_path(@user,:category_id => category.id), class: "btn btn-secondary shadow btn-sm mb-1") %>
+   <% end %>
+   <% end %>
+   <% end %>
    </div>
 
   <h3 class="text-center mt-4">Articles</h3>
@@ -36,3 +42,7 @@
 </div>
 
 <!-- End Content -->
+
+   <div class="mb-3 text-center">
+     <%= link_to '[ Back ]', url_for(:back), class: "link-secondary" %>
+   </div>
