@@ -56,7 +56,7 @@ class UsersController < ApplicationController
       redirect_to request.referrer
     else
       @user.destroy
-      session[:user_id] = nil unless @user == current_user
+      session[:user_id] = nil unless @user != current_user
       flash[:success] = 'Account and all associated artciles have been deleted'
       redirect_to articles_path
     end
