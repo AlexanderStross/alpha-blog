@@ -18,6 +18,7 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(artcle_params)
     @article.user = current_user
+    @categories = Category.all
     if @article.save
       flash[:success] = 'Article was saved successfully.'
       @categories.each do |category|
@@ -31,6 +32,7 @@ class ArticlesController < ApplicationController
   end
 
   def update
+    @categories = Category.all
     if @article.update(artcle_params)
       flash[:success] = 'Article was saved successfully.'
       @categories.each do |category|
