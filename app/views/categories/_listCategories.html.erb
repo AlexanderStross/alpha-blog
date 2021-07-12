@@ -15,6 +15,10 @@
         <div class="p-2 bd-highlight">
           <%= link_to "Delete", category_path(category), method: :delete, remote: true, data: { confirm: "Are you sure?"}, class: "btn btn-outline-danger btn-sm", id: "delete-category-#{category.id}" %>
         </div>
+      <% elsif category.featured? %>
+      <div class="p-2 bd-highlight">
+        <div class="btn btn-outline-success btn-sm me-md-2 active">Featured</div>
+      </div>
       <% end %>
       <div class="p-2 bd-highlight">
         <span class="badge bg-primary shadow rounded-pill"><%= category.article_count %></span>
