@@ -20,7 +20,7 @@ class CategoriesController < ApplicationController
         flash.now[:success] = 'Category was succeesfully created'
         format.html do
           flash[:success] = 'Category was succeesfully created'
-          redirect_to show_path
+          redirect_to @category
         end
       end
     else

@@ -27,7 +27,7 @@
             </small>
             <div class="mt-3">
               <% if @article.categories.any? %>
-                <%= render partial: @article.categories, collection: @article.categories, cached: true %>
+                <%= render partial: @article.categories, collection: @article.categories.reorder(:article_count), cached: true %>
               <% end %>
             </div>
           </div>

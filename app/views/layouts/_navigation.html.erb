@@ -32,8 +32,8 @@
           <li><%= link_to "View Articles", articles_path, class: "dropdown-item text-gray" %></li>
           <li><%= link_to "View Contributors", users_path, class: "dropdown-item text-gray" %></li>
           <li><%= link_to "View Categories", categories_path, class: "dropdown-item text-gray" %></li>
-          <% if logged_in? %>
           <li><hr class="dropdown-divider"></li>
+          <% if logged_in? %>
           <li><%= link_to "New Article", new_article_path, class: "dropdown-item text-gray" %></li>
           <% else %>
           <li><%= link_to "Sign up", signup_path, class: "dropdown-item text-gray" %></li>
@@ -45,7 +45,7 @@
            Featured
          </a>
         <ul id="featured-menu" class="dropdown-menu " aria-labelledby="navbarDropdown">
-        <% get_featured_Categories.each do |fc| %>
+        <% get_featured_Categories.order(:name).each do |fc| %>
           <% cache fc do %>
            <li id="featured-link-<%= fc.id %>"><%= link_to((content_tag(:span, fc.name, :class => "shadow; text-align: Left") + content_tag(:span, " ", :class => "") + content_tag(:span, "", :class => "shadow; text-align: right")).html_safe, category_path(fc.id), class: "dropdown-item text-gray") %></li>
           <% end %>
