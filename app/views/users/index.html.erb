@@ -1,6 +1,6 @@
 <!-- Content -->
 <div class="wow fadeIn">
-  <h1 class="text-center mb-4">Contributors</h1>
+  <h1 class="text-center mb-3">Contributors</h1>
   <div class="flickr_pagination">
     <%= will_paginate @users, :container => false %>
   </div>
@@ -8,7 +8,7 @@
     <% @users.each do |user| %>
       <% cache user do %>
         <div class="row justify-content-md-center">
-          <div class="col-8 mt-4">
+          <div class="col-8 mt-3">
             <div class="card text-center shadow mb-3 bg-white rounded">
               <div class="card-header fst-italic">
                 <%= link_to user.username, user, class: "link-secondary" %>
@@ -28,7 +28,7 @@
                   <% end %>
                 <% end %>
               </div>
-                <div class="card-footer text-muted mt-4">
+                <div class="card-footer text-muted mt-3">
                   <small>Joined <%= time_ago_in_words(user.created_at) %>
                     ago, edited
                     <%= time_ago_in_words(user.updated_at) %>
@@ -51,7 +51,7 @@
       <% end %>
     <% end %>
   </div>
-  <div class="flickr_pagination mb-4">
+  <div class="flickr_pagination mb-3">
     <%= will_paginate @users, :container => false %>
   </div>
 </div>
