@@ -1,7 +1,7 @@
 <!-- Content -->
 <div class="wow fadeIn">
   <h1 class="text-center mb-4"><%= @user.username %>'s profile
-    <span id="user-status-user-<%= @user.id %>" class="text-info"><%= "(admin)" if @user.admin%></span></h1>
+    <span id="user-status-user-<%= @user.id %>" class="text-muted"><%= "(admin)" if @user.admin%></span></h1>
 
   <%= gravatar_for @user, size: 200 %>
 
