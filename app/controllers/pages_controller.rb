@@ -1,18 +1,11 @@
 class PagesController < ApplicationController
+  def home; end
 
-  def home
-    # redirect_to articles_path if logged_in?
-  end
+  def about; end
 
-  def about
-  end
+  def pricing; end
 
-  def pricing
+  def contact; end
 
-  end
-
-  def contact
-
-  end
-
+  def admin; end
 end
