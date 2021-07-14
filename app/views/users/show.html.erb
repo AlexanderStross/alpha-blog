@@ -26,9 +26,9 @@
     <% @categories.each do | category | %>
       <% cache category do %>
         <% if (count =(userarticlesbycategory = category.articles.where(:user_id => @user.id)).count) > 0 %>
-          <% cache userarticlesbycategory do %>
+          <% #cache userarticlesbycategory do %>
             <%= link_to((category.name + " " + content_tag(:span, count, :class => "badge bg-primary shadow rounded-pill")).html_safe, user_path(@user,:category_id => category.id), class: "btn btn-secondary shadow btn-sm mb-1") %>
-          <% end %>
+          <% #end %>
         <% end %>
       <% end %>
     <% end %>
