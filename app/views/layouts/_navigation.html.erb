@@ -18,25 +18,25 @@
     <!-- Right -->
     <div class="mx-auto mr-auto"></div>
       <ul class="navbar-nav">
-        <li class="nav-item active">
-          <%= link_to "Home", root_path, class: "nav-link text-light" %>
+        <li class="nav-item">
+          <%= link_to "Home", root_path, class: class_names("nav-link text-light", { active: current_page?(root_path)}) %>
         </li>
         <!-- <li class="nav-item">
-          <%= link_to "About", about_path, class: "nav-link text-light" %>
+          <%= link_to "About", about_path, class: class_names("nav-link text-light", { active: current_page?(about_path)}) %>
         </li> -->
         <li class="nav-item dropdown">
          <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
            Blog
          </a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <li><%= link_to "View Contributors", users_path, class: "dropdown-item text-gray" %></li>
-          <li><%= link_to "View Articles", articles_path, class: "dropdown-item text-gray" %></li>
-          <li><%= link_to "View Categories", categories_path, class: "dropdown-item text-gray" %></li>
+          <li><%= link_to "View Contributors", users_path, class: class_names("dropdown-item text-gray", { active: current_page?(users_path)}) %></li>
+          <li><%= link_to "View Articles", articles_path, class: class_names("dropdown-item text-gray", { active: current_page?(articles_path)}) %></li>
+          <li><%= link_to "View Categories", categories_path, class: class_names("dropdown-item text-gray", { active: current_page?(categories_path)}) %></li>
           <li><hr class="dropdown-divider"></li>
           <% if logged_in? %>
-          <li><%= link_to "New Article", new_article_path, class: "dropdown-item text-gray" %></li>
+          <li><%= link_to "New Article", new_article_path, class: class_names("dropdown-item text-gray", { active: current_page?(new_article_path)}) %></li>
           <% else %>
-          <li><%= link_to "Sign up", signup_path, class: "dropdown-item text-gray" %></li>
+          <li><%= link_to "Sign up", signup_path, class: class_names("dropdown-item text-gray", { active: current_page?(signup_path)}) %></li>
           <% end %>
          </ul>
           <% if !!get_featured_Categories %>
@@ -47,21 +47,21 @@
         <ul id="featured-menu" class="dropdown-menu " aria-labelledby="navbarDropdown">
         <% get_featured_Categories.order(:name).each do |fc| %>
           <% cache fc do %>
-           <li id="featured-link-<%= fc.id %>"><%= link_to((content_tag(:span, fc.name, :class => "shadow; text-align: Left") + content_tag(:span, " ", :class => "") + content_tag(:span, "", :class => "shadow; text-align: right")).html_safe, category_path(fc.id), class: "dropdown-item text-gray") %></li>
+           <li id="featured-link-<%= fc.id %>"><%= link_to((content_tag(:span, fc.name, :class => "shadow; text-align: Left") + content_tag(:span, " ", :class => "") + content_tag(:span, "", :class => "shadow; text-align: right")).html_safe, category_path(fc.id), class: class_names("dropdown-item text-gray", { active: current_page?(category_path(fc.id))})) %></li>
           <% end %>
         <% end %>
          </ul>
         <% end %>
        </li>
         <!-- <li class="nav-item">
-          <%= link_to "Pricing", pricing_path, class: "nav-link text-light" %>
+          <%= link_to "Pricing", pricing_path, class: class_names("nav-link text-light", { active: current_page?(pricing_path)}) %>
         </li> -->
         <!-- <li class="nav-item">
-          <%= link_to "Contact", contact_path, class: "nav-link text-light" %>
+          <%= link_to "Contact", contact_path, class: class_names("nav-link text-light", { active: current_page?(contact_path)}) %>
         </li> -->
         <% unless logged_in? %>
         <li class="nav-item">
-          <%= link_to "Log in", login_path, class: "nav-link text-light" %>
+          <%= link_to "Log in", login_path, class: class_names("nav-link text-light", { active: current_page?(login_path)}) %>
         </li>
         <% else %>
         <li class="nav-item dropdown">
@@ -70,8 +70,8 @@
            <%= " (Admin)" if current_user.admin? %>
          </a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <li><%= link_to "View Profile", user_path(current_user), class: "dropdown-item text-gray" unless current_page?(user_path(current_user)) %></li>
-          <li><%= link_to "Edit Profile", edit_user_path(current_user), class: "dropdown-item text-gray" unless current_page?(edit_user_path(current_user)) %></li>
+          <li><%= link_to "View Profile", user_path(current_user), class: class_names("dropdown-item text-light", { active: current_page?(user_path(current_user))}) unless current_page?(user_path(current_user)) %></li>
+          <li><%= link_to "Edit Profile", edit_user_path(current_user), class: class_names("dropdown-item text-light", { active: current_page?(edit_user_path(current_user))}) unless current_page?(edit_user_path(current_user)) %></li>
           <li><hr class="dropdown-divider"></li>
           <li><%= link_to "Log out", logout_path, method: :delete, class: "dropdown-item text-gray" %></li>
          </ul>
