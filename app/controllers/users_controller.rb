@@ -3,6 +3,8 @@ class UsersController < ApplicationController
   before_action :require_user, only: %i[edit update]
   before_action :require_same_user, only: %i[edit update destory]
 
+  caches_action :index
+
   def show
     @articles = if params[:category_id]
                   Category.find(params[:category_id]).articles.where(user_id: @user.id).paginate(page: params[:page],

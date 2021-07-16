@@ -3,7 +3,7 @@
   <div class="flickr_pagination">
     <%= will_paginate @articles, :container => false %>
   </div>
-  <%= render 'articles/articles' %>
+  <%= render partial: 'articles/articles', collection: @articles, cached: false %>
   <div class="flickr_pagination mb-4">
     <%= will_paginate @articles, :container => false %>
   </div>

@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
   before_action :require_admin, except: %i[new index show]
 
-  # caches_action :index
+  caches_action :show
 
   def new
     @category = Category.new
