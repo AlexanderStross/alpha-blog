@@ -4,7 +4,7 @@ class ArticleCategoriesController < ApplicationController
   def show; end
 
   def destroy
-    @articleCategory.destroy
+    @article_category.destroy
     respond_to do |format|
       format.js { render layout: false }
     end
@@ -13,6 +13,6 @@ class ArticleCategoriesController < ApplicationController
   private
 
   def set_article_category
-    @articleCategory = ArticleCategory.find(params[:id])
+    @article_category = article_category.find(params[:id])
   end
 end

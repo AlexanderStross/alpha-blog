@@ -16,6 +16,6 @@ class ApplicationController < ActionController::Base
   end
 
   def get_featured_Categories
-    @fcs = Category.where(featured: true).reorder('article_count DESC')
+    @featured_categories = Category.where(featured: true).reorder('article_count DESC')
   end
 end

@@ -45,10 +45,10 @@
            Featured
          </a>
         <ul id="featured-menu" class="dropdown-menu " aria-labelledby="navbarDropdown">
-        <% get_featured_Categories.order(:name).each do |fc| %>
-          <% cache fc do %>
-           <li id="featured-link-<%= fc.id %>"><%= link_to((content_tag(:span, fc.name, :class => "shadow; text-align: Left") + content_tag(:span, " ", :class => "") + content_tag(:span, "", :class => "shadow; text-align: right")).html_safe, category_path(fc.id), class: class_names("dropdown-item text-gray", { active: current_page?(category_path(fc.id))})) %></li>
-          <% end %>
+        <% get_featured_Categories.each do |featured_category| %>
+          <% #cache fc do %>
+           <li id="featured-link-<%= featured_category.id %>"><%= link_to((content_tag(:span, featured_category.name, :class => "shadow; text-align: Left") + content_tag(:span, " ", :class => "") + content_tag(:span, "", :class => "shadow; text-align: right")).html_safe, category_path(featured_category.id), class: class_names("dropdown-item text-gray", { active: current_page?(category_path(featured_category.id))})) %></li>
+          <% #end %>
         <% end %>
          </ul>
         <% end %>
