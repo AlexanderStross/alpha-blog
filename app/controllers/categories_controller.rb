@@ -1,6 +1,8 @@
 class CategoriesController < ApplicationController
   before_action :require_admin, except: %i[new index show]
 
+  # caches_action :index
+
   def new
     @category = Category.new
     respond_to do |format|
