@@ -25,7 +25,7 @@
                  <div class="mt-3">
                    <% if article.categories.any? %>
                        <% #cache article do %>
-                        <%= render article.categories %>
+                        <%= render article.categories.order('name ASC') %>
                        <% #end %>
                    <% end %>
                  </div>

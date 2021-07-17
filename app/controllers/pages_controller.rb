@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  caches_action :home, :about, :contact
+
   def home; end
 
   def about; end

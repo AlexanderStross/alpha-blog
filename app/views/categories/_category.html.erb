@@ -1,1 +1,1 @@
-<%= link_to((category.name + " " + content_tag(:span, category.article_count, :class => "badge bg-primary shadow rounded-pill")).html_safe, category_path(category.id), class: class_names("btn btn-secondary shadow btn-sm mb-1", { active: current_page?(category_path(category.id)) } )) %>
+<%= link_to((category.name + " " + content_tag(:span, category.article_count, :class => "badge bg-primary shadow rounded-pill")).html_safe, category_path(category.slug), class: class_names("btn btn-secondary shadow btn-sm mb-1", { active: current_page?(category_path(category.id)) } )) %>

@@ -37,7 +37,9 @@ class CategoriesController < ApplicationController
   end
 
   def index
-    @category = Category.find(params[:id]) if params[:id] && params[:id].to_i > 0
+    if params[:id] && params[:id].to_i > 0
+      @category = (Category.find_by_slug(params[:id]) || Category.find(params[:id]))
+    end
     @id = params[:id] if params[:id]
     @category ||= Category.new
     categories = Category.all
@@ -53,7 +55,8 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @category = Category.find(params[:id])
+    @category = Category.find_by_slug(params[:id]) || Category.find(params[:id])
+
     @articles = @category.articles.paginate(page: params[:page], per_page: 5)
     respond_to do |format|
       format.js { render layout: false }
@@ -64,7 +67,7 @@ class CategoriesController < ApplicationController
   end
 
   def edit
-    @category = Category.find(params[:id])
+    @category = Category.find_by_slug(params[:id])
     if params[:togglefeatured] || params[:editcat]
       toggle_featured if params[:togglefeatured]
       if @category.featured?
@@ -79,7 +82,7 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    @category = Category.find(params[:id])
+    @category = Category.find_by_slug(params[:id])
     name = @category.name
     if @category.update(category_params)
       respond_to do |format|
@@ -102,7 +105,7 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    @category = Category.find(params[:id])
+    @category = Category.find_by_slug(params[:id])
     if @category.destroy
       respond_to do |format|
         format.js { render layout: false }
