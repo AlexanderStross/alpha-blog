@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :articles
   get 'signup', to: 'users#new'
   get 'contributors', to: 'users#'
-  # get '/users/:id/category/:id' => 'user#show?category=id', as: 'category_by_user'
+  get '/users/:id/category/:category_id' => 'users#category_by_user', as: 'category_by_user'
   resources :users, except: [:new] do
     member do
       patch :toggle_admin

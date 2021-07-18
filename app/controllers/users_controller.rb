@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[show edit update destroy toggle_admin]
+  before_action :set_user, only: %i[show category_by_user edit update destroy toggle_admin]
   before_action :require_user, only: %i[edit update]
   before_action :require_same_user, only: %i[edit update destory]
-  before_action :get_all_categories, only: %i[show contributors index]
+  before_action :get_all_categories, only: %i[show category_by_user contributors index]
 
   caches_action :index
 
@@ -14,6 +14,14 @@ class UsersController < ApplicationController
                   @user.articles.paginate(page: params[:page], per_page: 5)
                 end
     @alluserarticles = @user.articles
+  end
+
+  def category_by_user
+    @articles = Category.friendly.find(params[:category_id]).articles.where(user_id: @user.id).paginate(
+      page: params[:page], per_page: 5
+    )
+    @alluserarticles = @user.articles
+    render 'show'
   end
 
   def contributors

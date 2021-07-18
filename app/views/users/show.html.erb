@@ -27,15 +27,15 @@
       <% #cache category do %>
         <% if (count =(userarticlesbycategory = category.articles.where(:user_id => @user.id)).count) > 0 %>
           <% #cache userarticlesbycategory do %>
-            <%= link_to((category.name + " " + content_tag(:span, count, :class => "badge bg-primary shadow rounded-pill")).html_safe, user_path(@user,:category => category.slug), class: class_names("btn btn-secondary shadow btn-sm mb-1", { active: current_page?(user_path(@user,:category => category.slug)) } )) %>
+            <%= link_to(( category.name + " " + content_tag(:span, count, :class => "badge bg-primary shadow rounded-pill")).html_safe, category_by_user_path(@user,category), class: class_names("btn btn-secondary shadow btn-sm mb-1", { active: current_page?(category_by_user_path(@user,category)) } )) %>
           <% #end %>
         <% #end %>
       <% end %>
     <% end %>
-    <%= link_to(('All Articles' + " " + content_tag(:span, @alluserarticles.count, :class => "badge bg-primary shadow rounded-pill")).html_safe, user_path(@user), class: class_names("btn btn-secondary shadow btn-sm mb-1", { active: !params[:category] })) %>
+    <%= link_to(( 'All Articles' + " " + content_tag(:span, @alluserarticles.count, :class => "badge bg-primary shadow rounded-pill")).html_safe, user_path(@user), class: class_names("btn btn-secondary shadow btn-sm mb-1", { active: !params[:category_id] })) %>
   </div>
 
-  <h3 class="text-center mt-4">Articles</h3>
+  <h3 class="text-center mt-4"><%= if params[:category_id] then params[:category_id].titleize else 'All Articles' end %></h3>
   <div class="flickr_pagination">
     <%= will_paginate @articles, :container => false %>
   </div>
@@ -48,5 +48,5 @@
 <!-- End Content -->
 
 <div class="mb-3 text-center">
-  <%= link_to '[ Back to Contriutors ]', users_path, class: "link-secondary" %>
+  <%= link_to '[ Back to Contriutors ]', contributors_path, class: "link-secondary" %>
 </div>

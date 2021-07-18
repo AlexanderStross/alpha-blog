@@ -31,7 +31,7 @@
                   <% @categories.order('name ASC').each do | category | %>
                       <% if (count =(userarticlesbycategory = category.articles.where(:user_id => user.id)).count) > 0 %>
                         <% #cache userarticlesbycategory do %>
-                          <%= link_to((category.name + " " + content_tag(:span, count, :class => "badge bg-primary shadow rounded-pill")).html_safe, user_path(user,:category => category.slug), class: "btn btn-secondary shadow btn-sm mb-1") %>
+                          <%= link_to((category.name + " " + content_tag(:span, count, :class => "badge bg-primary shadow rounded-pill")).html_safe, category_by_user_path(user,category), class: "btn btn-secondary shadow btn-sm mb-1") %>
                         <% #end %>
                       <% end %>
                   <% end %>

@@ -29,7 +29,7 @@
            Blog
          </a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <li><%= link_to "View Contributors", users_path, class: class_names("dropdown-item text-gray", { active: current_page?(users_path)}) %></li>
+          <li><%= link_to "View Contributors", contributors_path, class: class_names("dropdown-item text-gray", { active: current_page?(users_path)}) %></li>
           <li><%= link_to "View Articles", articles_path, class: class_names("dropdown-item text-gray", { active: current_page?(articles_path)}) %></li>
           <li><%= link_to "View Categories", categories_path, class: class_names("dropdown-item text-gray", { active: current_page?(categories_path)}) %></li>
           <li><hr class="dropdown-divider"></li>
