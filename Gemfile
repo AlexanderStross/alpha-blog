@@ -27,6 +27,8 @@ gem 'will_paginate', '~> 3.3.0'
 # Page and Action Caching
 gem 'actionpack-action_caching', '~> 1.2.2'
 gem 'actionpack-page_caching', '~> 1.2.4'
+# Friengly URLS
+gem 'friendly_id', '~> 5.4.0'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  extend FriendlyId
+  friendly_id :name, use: :slugged
   before_save { self.email = email.downcase }
   has_many :articles, dependent: :destroy
   validates :username, presence: true,
@@ -9,24 +11,6 @@ class User < ApplicationRecord
                     uniqueness: { case_sensive: false },
                     length: { maximum: 105 },
                     format: { with: VALID_EMAIL_REGEX }
+  validates :slug, uniqueness: { case_sensive: false }
   has_secure_password
-
-  def create_slug
-    username.downcase.gsub(' ', '-')
-  end
-
-  def update_slug
-    update_attributes slug: assign_slug
-  end
-
-  def to_param
-    # return the string of the slug stored in our database
-    slug
-  end
-
-  private
-
-  def assign_slug
-    self.slug = create_slug
-  end
 end

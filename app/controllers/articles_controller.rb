@@ -57,7 +57,7 @@ class ArticlesController < ApplicationController
   private
 
   def set_article
-    @article = Article.find_by_slug(params[:id]) || Article.find(params[:id])
+    @article = Article.friendly.find(params[:id])
   end
 
   def artcle_params

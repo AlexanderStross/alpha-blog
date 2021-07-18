@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy toggle_admin]
   before_action :require_user, only: %i[edit update]
   before_action :require_same_user, only: %i[edit update destory]
+  before_action :get_all_categories, only: %i[show contributors index]
 
   caches_action :index
 
@@ -12,13 +13,16 @@ class UsersController < ApplicationController
                 else
                   @user.articles.paginate(page: params[:page], per_page: 5)
                 end
-    @categories = Category.all
     @alluserarticles = @user.articles
+  end
+
+  def contributors
+    @users = User.where('user_role >= 1').paginate(page: params[:page],
+                                                   per_page: 5)
   end
 
   def index
     @users = User.order(:username).paginate(page: params[:page], per_page: 5)
-    @categories = Category.all
   end
 
   def new
@@ -70,12 +74,16 @@ class UsersController < ApplicationController
 
   private
 
+  def get_all_categories
+    @categories = Category.all
+  end
+
   def user_params
     params.require(:user).permit(:username, :email, :password)
   end
 
   def set_user
-    @user = @user = User.find_by_slug(params[:id]) || User.find(params[:id])
+    @user = User.friendly.find(params[:id])
   end
 
   def require_same_user

@@ -1,10 +1,13 @@
 class Category < ApplicationRecord
+  extend FriendlyId
+  friendly_id :name, use: :slugged
   validates :name, presence: true,
                    uniqueness: { case_sensive: false },
                    length: { minimum: 3, maximum: 30 }
   validates :meta_description, length: { minium: 10, maximum: 155 }
   has_many :article_categories, dependent: :destroy
   has_many :articles, through: :article_categories
+  validates :slug, uniqueness: { case_sensive: false }
 
   def create_slug
     name.downcase.gsub(' ', '-')
