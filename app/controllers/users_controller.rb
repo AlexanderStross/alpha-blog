@@ -6,9 +6,9 @@ class UsersController < ApplicationController
   caches_action :index
 
   def show
-    @articles = if params[:category_id]
-                  Category.find(params[:category_id]).articles.where(user_id: @user.id).paginate(page: params[:page],
-                                                                                                 per_page: 5)
+    @articles = if params[:category]
+                  Category.find_by_slug(params[:category]).articles.where(user_id: @user.id).paginate(page: params[:page],
+                                                                                                      per_page: 5)
                 else
                   @user.articles.paginate(page: params[:page], per_page: 5)
                 end
