@@ -75,7 +75,7 @@ class UsersController < ApplicationController
   end
 
   def set_user
-    @user = User.find(params[:id])
+    @user = @user = User.find_by_slug(params[:id]) || User.find(params[:id])
   end
 
   def require_same_user
