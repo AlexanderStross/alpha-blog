@@ -23,7 +23,7 @@
   </div>
 
   <div class="container col-8 text-center">
-    <% @categories.each do | category | %>
+    <% @categories.order('name ASC').each do | category | %>
       <% #cache category do %>
         <% if (count =(userarticlesbycategory = category.articles.where(:user_id => @user.id)).count) > 0 %>
           <% #cache userarticlesbycategory do %>
